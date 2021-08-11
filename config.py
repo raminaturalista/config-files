@@ -8,14 +8,28 @@ from typing import List  # noqa: F401
 from libqtile import bar, layout, widget, extension, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+
+# from libqtile.utils import guess_terminal
 
 # Definición de variables generales (mod, terminal)
 
 mod = "mod4"
 mod1 = "alt"
 mod2 = "control"
-terminal = guess_terminal()
+terminal = "xfce4-terminal" # guess_terminal()
+
+#Colores
+
+colors = [["#2b303b", "#2b303b"], # 0. Negro
+          ["#65737e", "#65737e"], # 1. Gris
+          ["#c0c5ce", "#c0c5ce"], # 2. Blanco
+          ["#bf616a", "#bf616a"], # 3. Rojo
+          ["#a3be8c", "#a3be8c"], # 4. Verde
+          ["#ebcb8b", "#ebcb8b"], # 5. Amarillo
+          ["#8fa1b3", "#8fa1b3"], # 6. Azul
+          ["#b48ead", "#b48ead"], # 7. Magenta
+          ["#96b5b4", "#96b5b4"], # 8. Cyan
+          ["#ffffff", "#ffffff"]] # 9. Blanco 100%
 
 # Ventanas
 
@@ -40,16 +54,12 @@ keys = [
         desc="Move window down"),
     Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
 
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([mod, "control"], "Left", lazy.layout.grow_left(),
-        desc="Grow window to the left"),
-    Key([mod, "control"], "Right", lazy.layout.grow_right(),
-        desc="Grow window to the right"),
-    Key([mod, "control"], "Down", lazy.layout.grow_down(),
-        desc="Grow window down"),
-    Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    # Cambiar tamaño de las ventanas
+
+    # Key([mod], "+", lazy.layout.grow()),
+    # Key([mod], "-", lazy.layout.shrink()),
+    # Key([mod], "=", lazy.layout.normalize()),
+    # Key([mod], ">", lazy.layout.maximize()),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -74,27 +84,30 @@ keys = [
     Key([mod], "f", lazy.spawn("firefox")),
     Key([mod], "b", lazy.spawn("brave")),
     Key([mod], "e", lazy.spawn("nemo")),
-    Key([mod], "m", lazy.spawn("rofi -show run")),
+    Key([mod], "m", lazy.spawn(
+        "dmenu_run -p '$ :: ' -l 50 -fn 'JetBrains Mono SemiBold-12' -nb '#2b303b' -sb '#bf616a' -sf '#2b303b' -nf '#c0c5ce'")),
+    # Key([mod], "m", lazy.spawn("rofi -show run")),
     Key([mod], "t", lazy.spawn("mousepad")),
     Key([mod], "c", lazy.spawn("thunderbird")),
     Key([mod], "r", lazy.spawn("/usr/bin/rstudio-bin %F")),
-
+    Key([mod], "g", lazy.spawn(
+        "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/steam-wrapper --file-forwarding com.valvesoftware.Steam @@u %U @@")),
         
     ]
 
 # Grupos
 
 __groups = {
-    1: Group("term"),
-    2: Group("web", matches=[Match(wm_class=["firefox"])]),
-    3: Group("dev"),
-    4: Group("doc"),
-    5: Group("mail", matches=[Match(wm_class=["thunderbird"])]),
-    6: Group("dir", matches=[Match(wm_class=["nemo"])]),
-    7: Group("game"),
-    8: Group("vlc"),
-    9: Group("off"),
-    0: Group("moc")
+    1: Group(""),
+    2: Group("爵", matches=[Match(wm_class=["firefox"])]),
+    3: Group(""),
+    4: Group(""),
+    5: Group("", matches=[Match(wm_class=["thunderbird"])]),
+    6: Group("", matches=[Match(wm_class=["nemo"])]),
+    7: Group(""),
+    8: Group(""),
+    9: Group(""),
+    0: Group("")
 }
 groups = [__groups[i] for i in __groups]
 
@@ -119,19 +132,6 @@ for i in groups:
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
-#Colores
-
-colors = [["#2b303b", "#2b303b"], # 0. Negro
-          ["#65737e", "#65737e"], # 1. Gris
-          ["#c0c5ce", "#c0c5ce"], # 2. Blanco
-          ["#bf616a", "#bf616a"], # 3. Rojo
-          ["#a3be8c", "#a3be8c"], # 4. Verde
-          ["#ebcb8b", "#ebcb8b"], # 5. Amarillo
-          ["#8fa1b3", "#8fa1b3"], # 6. Azul
-          ["#b48ead", "#b48ead"], # 7. Magenta
-          ["#96b5b4", "#96b5b4"], # 8. Cyan
-          ["#ffffff", "#ffffff"]] # 9. Blanco 100%
-
 
 # Layouts
 
@@ -145,7 +145,6 @@ layouts = [
         border_width=3,
     ),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -160,7 +159,7 @@ layouts = [
 # Widgets :: default settings
 
 widget_defaults = dict(
-    font='JetBrains Mono Medium',
+    font='JetBrains Mono SemiBold',
     fontsize=12,
     padding=6,
     background=colors[0],
@@ -175,32 +174,36 @@ screens = [
         top=bar.Bar(
             [
 
-
-                
                 # widget.CurrentLayoutIcon(scale=0.8, padding=6,),
 
-
                 widget.GroupBox(
-                block_highlight_text_color=colors[9],
-                rounded=False,
+                font = 'JetBrainsMono Nerd Font Regular',
+                fontsize = 24, 
+                block_highlight_text_color=colors[0],
+                rounded=True,
                 highlight_method='block',
-                this_current_screen_border=colors[8],
+                this_current_screen_border=colors[5],
                 inactive=colors[1],
                 active=colors[9],
                 urgent_border=colors[5],
                 # urgent_text=colors[6],
                 ),
 
+                # Nombre de la ventana
+                
                 # widget.WindowName(),
+                
+                # Prompt
 
                 widget.Prompt(
                     prompt="$ :: "
                 ),
-                # widget.WindowName(),
-                # widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+                
                 widget.Spacer (),
-                widget.Systray(),
+                widget.Systray(
+                    icon_size=15,
+                    padding=8,
+                ),
                 
                 # Separador power line
 
@@ -217,47 +220,51 @@ screens = [
                 # Separador power line
 
                 widget.TextBox(
-                       text = '',
+                       text = '',
+                       font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[0],
                        foreground = colors[4],
-                       padding = -1,
-                       fontsize = 58
+                       padding = -5,
+                       fontsize = 42
                        ),
 
                 widget.Volume(
-                    background=colors[4],
+                    background = colors[4],
+                    foreground = colors[0],
                 ),
 
                 # Separador power line
 
                 widget.TextBox(
-                       text = '',
+                       text = '',
+                       font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[4],
                        foreground = colors[5],
-                       padding = -1,
-                       fontsize = 58
+                       padding = -5,
+                       fontsize = 42
                        ),
 
                 # Reloj
                 
                 widget.Clock(
                     background=colors[5],
-                    foreground=colors[9],
-                    format='%I:%M %p'),
+                    foreground = colors[0],
+                    format='%A %d-%m-%Y %H:%M'),
                 
                 # Notificaciones
 
-                widget.Notify(),
+                # widget.Notify(),
 
 
                 # Separador power line
 
                 widget.TextBox(
-                       text = '',
+                       text = '',
+                       font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[5],
                        foreground = colors[6],
-                       padding = -1,
-                       fontsize = 58
+                       padding = -5,
+                       fontsize = 42
                        ),
 
                        
@@ -265,6 +272,7 @@ screens = [
 
                 widget.Moc(
                     background=colors[6],
+                    foreground = colors[0],
                     play_color=colors[0],
                     no_play_color=colors[0],
                 ),
@@ -272,11 +280,12 @@ screens = [
                 # Separador power line
 
                 widget.TextBox(
-                       text = '',
+                       text = '',
+                       font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[6],
                        foreground = colors[7],
-                       padding = -1,
-                       fontsize = 58
+                       padding = -5,
+                       fontsize = 42
                        ),
                 
                 # Batería
@@ -286,31 +295,34 @@ screens = [
                     discharge_char="-",
                     format='{char} {percent:2.0%} ',
                     background=colors[7],
-                    foreground=colors[9],
+                    foreground = colors[0],
                     show_short_text=False,
+                    low_foreground = colors [9],
                     ),
-                
+                # xfce4-power-manager-settings
                 # Separador power line
 
                 widget.TextBox(
-                       text = '',
+                       text = '',
+                       font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[7],
                        foreground = colors[8],
-                       padding = -1,
-                       fontsize = 58
+                       padding = -5,
+                       fontsize = 42
                        ),
                 
                 # Salir
 
                 widget.QuickExit(
                     background=colors[8], 
-                    foreground=colors[9],
-                    default_text='cerrar ',
+                    foreground = colors[0],
+                    default_text='[cerrar]',
                     countdown_format='[ {} ]'),
             ], # Widgets
-            24, # Ancho
-        opacity=0.9), # Opacidad
-    ), # Screen
+            30, # Ancho
+        opacity=0.9), # Configs
+    ), 
+    
 ] # Screens
 
 # Drag floating layouts.
@@ -365,6 +377,9 @@ autostart = [
         "nitrogen --restore",
         "picom --no-vsync &",
         "nm-applet &",
+        "blueberry-tray",
+        "numlockx",
+        # "systemctl enable bluetooth",
         # "volumeicon &",
 ]
 
