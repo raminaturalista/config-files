@@ -159,8 +159,8 @@ layouts = [
 # Widgets :: default settings
 
 widget_defaults = dict(
-    font='JetBrains Mono SemiBold',
-    fontsize=12,
+    font='JetBrainsMono Nerd Font Semibold',
+    fontsize=11,
     padding=6,
     background=colors[0],
 )
@@ -189,48 +189,51 @@ screens = [
                 # urgent_text=colors[6],
                 ),
 
-                # Nombre de la ventana
-                
-                # widget.WindowName(),
-                
-                # Prompt
-
-                widget.Prompt(
-                    prompt="$ :: "
-                ),
-                
                 widget.Spacer (),
-                widget.Systray(
-                    icon_size=15,
-                    padding=8,
-                ),
-                
+
+                widget.Systray(),
+                              
                 # Separador power line
 
-                widget.TextBox(
-                       text = '',
+                 widget.TextBox(
+                       text = '',
+                       font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[0],
-                       foreground = colors[0],
-                       padding = 0,
-                       fontsize = 20,
+                       foreground = colors[3],
+                       padding = -5,
+                       fontsize = 44
                        ),
 
-                # widget.Wlan(interface="wlp1s0", format="{essid}"),
+                widget.CheckUpdates(
+                    background = colors[3],
+                    foreground = colors[9],
+                    no_update_string= ' 0',
+                    colour_no_updates = colors [9],
+                    display_format = ' {updates}',
+                ),
 
                 # Separador power line
 
                 widget.TextBox(
                        text = '',
                        font = 'JetBrainsMono Nerd Font Regular',
-                       background = colors[0],
+                       background = colors[3],
                        foreground = colors[4],
                        padding = -5,
-                       fontsize = 42
+                       fontsize = 44
                        ),
+
+                widget.TextBox(
+                    text='',
+                    fontsize=18,
+                    background = colors[4],
+                    foreground = colors[9],
+
+                ),
 
                 widget.Volume(
                     background = colors[4],
-                    foreground = colors[0],
+                    foreground = colors[9],
                 ),
 
                 # Separador power line
@@ -244,12 +247,19 @@ screens = [
                        fontsize = 42
                        ),
 
+                widget.TextBox(
+                    background=colors[5],
+                    foreground=colors[9],
+                    text="",
+                    fontsize=18,
+                ),
+                
                 # Reloj
                 
                 widget.Clock(
                     background=colors[5],
-                    foreground = colors[0],
-                    format='%A %d-%m-%Y %H:%M'),
+                    foreground = colors[9],
+                    format='%a %d-%m %H:%M'),
                 
                 # Notificaciones
 
@@ -272,9 +282,9 @@ screens = [
 
                 widget.Moc(
                     background=colors[6],
-                    foreground = colors[0],
-                    play_color=colors[0],
-                    no_play_color=colors[0],
+                    foreground = colors[9],
+                    play_color=colors[9],
+                    no_play_color=colors[9],
                 ),
                 
                 # Separador power line
@@ -295,7 +305,7 @@ screens = [
                     discharge_char="-",
                     format='{char} {percent:2.0%} ',
                     background=colors[7],
-                    foreground = colors[0],
+                    foreground = colors[9],
                     show_short_text=False,
                     low_foreground = colors [9],
                     ),
@@ -315,12 +325,12 @@ screens = [
 
                 widget.QuickExit(
                     background=colors[8], 
-                    foreground = colors[0],
+                    foreground = colors[9],
                     default_text='[cerrar]',
                     countdown_format='[ {} ]'),
             ], # Widgets
             30, # Ancho
-        opacity=0.9), # Configs
+        opacity=1), # Configs
     ), 
     
 ] # Screens
