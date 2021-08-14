@@ -88,7 +88,7 @@ keys = [
         "dmenu_run -p '$ :: ' -l 50 -fn 'JetBrains Mono SemiBold-12' -nb '#2b303b' -sb '#bf616a' -sf '#2b303b' -nf '#c0c5ce'")),
     # Key([mod], "m", lazy.spawn("rofi -show run")),
     Key([mod], "t", lazy.spawn("mousepad")),
-    Key([mod], "c", lazy.spawn("thunderbird")),
+    Key([mod], "c", lazy.spawn("mailspring")),
     Key([mod], "r", lazy.spawn("/usr/bin/rstudio-bin %F")),
     Key([mod], "g", lazy.spawn(
         "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/steam-wrapper --file-forwarding com.valvesoftware.Steam @@u %U @@")),
