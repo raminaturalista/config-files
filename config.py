@@ -14,7 +14,7 @@ from libqtile.lazy import lazy
 # Definición de variables generales (mod, terminal)
 
 mod = "mod4"
-mod1 = "alt"
+# mod1 = "alt"
 mod2 = "control"
 terminal = "xfce4-terminal" # guess_terminal()
 
@@ -89,9 +89,9 @@ keys = [
     # Key([mod], "m", lazy.spawn("rofi -show run")),
     Key([mod], "t", lazy.spawn("mousepad")),
     Key([mod], "c", lazy.spawn("mailspring")),
-    Key([mod], "r", lazy.spawn("/usr/bin/rstudio-bin %F")),
-    Key([mod], "g", lazy.spawn(
-        "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=/app/bin/steam-wrapper --file-forwarding com.valvesoftware.Steam @@u %U @@")),
+    Key([mod], "r", lazy.spawn("/usr/bin/rstudio-bin")),
+    Key([mod], "g", lazy.spawn("/usr/bin/steam-runtime")),
+    Key([mod], "w", lazy.spawn("rofi -show window")),
         
     ]
 
@@ -105,7 +105,7 @@ __groups = {
     5: Group("", matches=[Match(wm_class=["thunderbird"])]),
     6: Group("", matches=[Match(wm_class=["nemo"])]),
     7: Group(""),
-    8: Group(""),
+    8: Group(""),
     9: Group(""),
     0: Group("")
 }
@@ -159,7 +159,7 @@ layouts = [
 # Widgets :: default settings
 
 widget_defaults = dict(
-    font='JetBrainsMono Nerd Font Semibold',
+    font='JetBrainsMono Nerd Font Regular',
     fontsize=11,
     padding=6,
     background=colors[0],
@@ -178,9 +178,10 @@ screens = [
 
                 widget.GroupBox(
                 font = 'JetBrainsMono Nerd Font Regular',
-                fontsize = 24, 
+                fontsize = 18, 
+                padding=8,
                 block_highlight_text_color=colors[0],
-                rounded=True,
+                rounded=False,
                 highlight_method='block',
                 this_current_screen_border=colors[5],
                 inactive=colors[1],
