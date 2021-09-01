@@ -91,19 +91,35 @@ keys = [
         
     ]
 
-# Grupos
+# Grupos ÍCONOS
+
+#__groups = {
+#    1: Group(""),
+#    2: Group("爵", matches=[Match(wm_class=["firefox"])]),
+#    3: Group(""),
+#    4: Group("", matches=[Match(wm_class=["okular"])]),
+#    5: Group("", matches=[Match(wm_class=["mailspring"])]),
+#    6: Group("", matches=[Match(wm_class=["nemo"])]),
+#    7: Group(""),
+#    8: Group(""),
+#    9: Group(""),
+#    0: Group("")
+#}
+#groups = [__groups[i] for i in __groups]
+
+# Grupos TEXTO
 
 __groups = {
-    1: Group(""),
-    2: Group("爵", matches=[Match(wm_class=["firefox"])]),
-    3: Group(""),
-    4: Group("", matches=[Match(wm_class=["okular"])]),
-    5: Group("", matches=[Match(wm_class=["mailspring"])]),
-    6: Group("", matches=[Match(wm_class=["nemo"])]),
-    7: Group(""),
-    8: Group(""),
-    9: Group(""),
-    0: Group("")
+    1: Group("term"),
+    2: Group("web", matches=[Match(wm_class=["firefox"])]),
+    3: Group("code"),
+    4: Group("docs", matches=[Match(wm_class=["okular"])]),
+    5: Group("mails", matches=[Match(wm_class=["mailspring"])]),
+    6: Group("file", matches=[Match(wm_class=["nemo"])]),
+    7: Group("game"),
+    8: Group("vlc"),
+    9: Group("off"),
+    0: Group("music")
 }
 groups = [__groups[i] for i in __groups]
 
@@ -177,9 +193,9 @@ screens = [
             [
 
                 widget.GroupBox(
-                # font = 'JetBrainsMono Nerd Font Regular',
-                fontsize = 18, 
-                padding=8,
+                font = 'JetBrainsMono Nerd Font',
+                fontsize = 12, 
+                padding=2,
                 block_highlight_text_color=colors[0],
                 rounded=False,
                 highlight_method='block',
@@ -322,7 +338,7 @@ screens = [
             ], # Fin de los widgets
             28, # Ancho
             margin=[8, 8, 2, 8], # Margen NESW
-            opacity=1 # Opacidad
+            opacity=0.9 # Opacidad
             
             ) # Fin de la configuración de la barra
         
