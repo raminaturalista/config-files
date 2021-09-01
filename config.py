@@ -150,13 +150,13 @@ for i in groups:
 layouts = [
     # layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
     layout.MonadTall(
-        margin = 5,
+        margin = 8,
         single_margin=8,
         border_normal="#2b303b",
         border_focus="#ebcb8b",
         border_width=3,
     ),
-    layout.Max(),
+    # layout.Max(),
     layout.Floating(
         border_normal="#2b303b",
         border_focus="#ebcb8b",
@@ -196,10 +196,10 @@ screens = [
                 font = 'JetBrainsMono Nerd Font',
                 fontsize = 12, 
                 padding=2,
-                block_highlight_text_color=colors[0],
-                rounded=False,
+                block_highlight_text_color=colors[9],
+                rounded=True,
                 highlight_method='block',
-                this_current_screen_border=colors[5],
+                this_current_screen_border=colors[3],
                 inactive=colors[1],
                 active=colors[9],
                 urgent_border=colors[5],
@@ -318,11 +318,29 @@ screens = [
                     ),
                 
                 # Separador power line
-                
+                                
                 widget.TextBox(
                        text = '',
                        # font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[7],
+                       foreground = colors[3],
+                       padding = -5,
+                       fontsize = 42
+                       ),
+
+
+
+                widget.CurrentLayout(
+                       background = colors[3],
+                       foreground = colors[0],
+                       ),
+
+                # Separador power line
+                
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[3],
                        foreground = colors[8],
                        padding = -5,
                        fontsize = 42
@@ -384,15 +402,9 @@ def start_once():
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = "LG3D"
+# Nombre del gestor de ventanas
+
+wmname = "Qtile"
 
 autostart = [
         "nitrogen --restore",
