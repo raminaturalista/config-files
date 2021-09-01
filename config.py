@@ -44,22 +44,19 @@ keys = [
     Key([mod], "space", lazy.layout.next(),
         desc="Move window focus to other window"),
 
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "Left", lazy.layout.shuffle_left(),
-        desc="Move window to the left"),
-    Key([mod, "shift"], "Right", lazy.layout.shuffle_right(),
-        desc="Move window to the right"),
-    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(),
-        desc="Move window down"),
+    # Mover ventanas en un espacio de trabajo
+
+    Key([mod, "shift"], "Left", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
 
     # Cambiar tamaño de las ventanas
 
-    # Key([mod], "+", lazy.layout.grow()),
-    # Key([mod], "-", lazy.layout.shrink()),
-    # Key([mod], "=", lazy.layout.normalize()),
-    # Key([mod], ">", lazy.layout.maximize()),
+    Key([mod], "o", lazy.layout.grow()),
+    Key([mod], "i", lazy.layout.shrink()),
+    #Key([mod], "=", lazy.layout.normalize()),
+    #Key([mod], ">", lazy.layout.maximize()),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -86,7 +83,6 @@ keys = [
     Key([mod], "e", lazy.spawn("nemo")),
     Key([mod], "m", lazy.spawn(
         "dmenu_run -p '$ :: ' -l 50 -fn 'JetBrains Mono SemiBold-12' -nb '#2b303b' -sb '#bf616a' -sf '#2b303b' -nf '#c0c5ce'")),
-    # Key([mod], "m", lazy.spawn("rofi -show run")),
     Key([mod], "t", lazy.spawn("mousepad")),
     Key([mod], "c", lazy.spawn("mailspring")),
     Key([mod], "r", lazy.spawn("/usr/bin/rstudio-bin")),
@@ -101,8 +97,8 @@ __groups = {
     1: Group(""),
     2: Group("爵", matches=[Match(wm_class=["firefox"])]),
     3: Group(""),
-    4: Group(""),
-    5: Group("", matches=[Match(wm_class=["thunderbird"])]),
+    4: Group("", matches=[Match(wm_class=["okular"])]),
+    5: Group("", matches=[Match(wm_class=["mailspring"])]),
     6: Group("", matches=[Match(wm_class=["nemo"])]),
     7: Group(""),
     8: Group(""),
@@ -145,6 +141,12 @@ layouts = [
         border_width=3,
     ),
     layout.Max(),
+    layout.Floating(
+        border_normal="#2b303b",
+        border_focus="#ebcb8b",
+        border_width=3,
+
+    ),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -159,7 +161,7 @@ layouts = [
 # Widgets :: default settings
 
 widget_defaults = dict(
-    font='JetBrainsMono Nerd Font Regular',
+    font='JetBrainsMono Nerd Font Semibold',
     fontsize=11,
     padding=6,
     background=colors[0],
@@ -174,10 +176,8 @@ screens = [
         top=bar.Bar(
             [
 
-                # widget.CurrentLayoutIcon(scale=0.8, padding=6,),
-
                 widget.GroupBox(
-                font = 'JetBrainsMono Nerd Font Regular',
+                # font = 'JetBrainsMono Nerd Font Regular',
                 fontsize = 18, 
                 padding=8,
                 block_highlight_text_color=colors[0],
@@ -193,64 +193,59 @@ screens = [
                 widget.Spacer (),
 
                 widget.Systray(),
-                              
-                # Separador power line
 
-                 widget.TextBox(
+                widget.TextBox(
                        text = '',
-                       font = 'JetBrainsMono Nerd Font Regular',
+                       # font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[0],
-                       foreground = colors[3],
+                       foreground = colors[0],
                        padding = -5,
                        fontsize = 44
                        ),
-
-                widget.CheckUpdates(
-                    background = colors[3],
-                    foreground = colors[9],
-                    no_update_string= ' 0',
-                    colour_no_updates = colors [9],
-                    display_format = ' {updates}',
-                ),
-
+                              
                 # Separador power line
 
                 widget.TextBox(
                        text = '',
-                       font = 'JetBrainsMono Nerd Font Regular',
-                       background = colors[3],
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[0],
                        foreground = colors[4],
                        padding = -5,
                        fontsize = 44
                        ),
 
+                # Volumen
+
                 widget.TextBox(
                     text='',
                     fontsize=18,
                     background = colors[4],
-                    foreground = colors[9],
+                    foreground = colors[0],
 
                 ),
 
                 widget.Volume(
                     background = colors[4],
-                    foreground = colors[9],
+                    foreground = colors[0],
+                    padding=10,
                 ),
 
                 # Separador power line
-
+                
                 widget.TextBox(
                        text = '',
-                       font = 'JetBrainsMono Nerd Font Regular',
+                       # font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[4],
                        foreground = colors[5],
                        padding = -5,
                        fontsize = 42
                        ),
 
+                # Ícono del reloj
+
                 widget.TextBox(
                     background=colors[5],
-                    foreground=colors[9],
+                    foreground=colors[0],
                     text="",
                     fontsize=18,
                 ),
@@ -259,19 +254,14 @@ screens = [
                 
                 widget.Clock(
                     background=colors[5],
-                    foreground = colors[9],
+                    foreground = colors[0],
                     format='%a %d-%m %H:%M'),
                 
-                # Notificaciones
-
-                # widget.Notify(),
-
-
                 # Separador power line
 
                 widget.TextBox(
                        text = '',
-                       font = 'JetBrainsMono Nerd Font Regular',
+                       # font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[5],
                        foreground = colors[6],
                        padding = -5,
@@ -283,22 +273,22 @@ screens = [
 
                 widget.Moc(
                     background=colors[6],
-                    foreground = colors[9],
-                    play_color=colors[9],
-                    no_play_color=colors[9],
+                    foreground = colors[0],
+                    play_color=colors[0],
+                    no_play_color=colors[0],
                 ),
                 
                 # Separador power line
-
+                
                 widget.TextBox(
                        text = '',
-                       font = 'JetBrainsMono Nerd Font Regular',
+                       # font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[6],
                        foreground = colors[7],
                        padding = -5,
                        fontsize = 42
                        ),
-                
+
                 # Batería
 
                 widget.Battery (
@@ -306,33 +296,37 @@ screens = [
                     discharge_char="-",
                     format='{char} {percent:2.0%} ',
                     background=colors[7],
-                    foreground = colors[9],
+                    foreground = colors[0],
                     show_short_text=False,
                     low_foreground = colors [9],
                     ),
-                # xfce4-power-manager-settings
+                
                 # Separador power line
-
+                
                 widget.TextBox(
                        text = '',
-                       font = 'JetBrainsMono Nerd Font Regular',
+                       # font = 'JetBrainsMono Nerd Font Regular',
                        background = colors[7],
                        foreground = colors[8],
                        padding = -5,
                        fontsize = 42
                        ),
-                
+
                 # Salir
 
                 widget.QuickExit(
                     background=colors[8], 
-                    foreground = colors[9],
+                    foreground = colors[0],
                     default_text='[cerrar]',
-                    countdown_format='[ {} ]'),
-            ], # Widgets
-            30, # Ancho
-        opacity=1), # Configs
-    ), 
+                    countdown_format='[  {}  ]'),
+            ], # Fin de los widgets
+            28, # Ancho
+            margin=[8, 8, 2, 8], # Margen NESW
+            opacity=1 # Opacidad
+            
+            ) # Fin de la configuración de la barra
+        
+        ) # Fin de esta pantalla
     
 ] # Screens
 
