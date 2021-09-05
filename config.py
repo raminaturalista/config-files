@@ -91,35 +91,19 @@ keys = [
         
     ]
 
-# Grupos ÍCONOS
-
-#__groups = {
-#    1: Group(""),
-#    2: Group("爵", matches=[Match(wm_class=["firefox"])]),
-#    3: Group(""),
-#    4: Group("", matches=[Match(wm_class=["okular"])]),
-#    5: Group("", matches=[Match(wm_class=["mailspring"])]),
-#    6: Group("", matches=[Match(wm_class=["nemo"])]),
-#    7: Group(""),
-#    8: Group(""),
-#    9: Group(""),
-#    0: Group("")
-#}
-#groups = [__groups[i] for i in __groups]
-
-# Grupos TEXTO
+# Grupos
 
 __groups = {
-    1: Group("term"),
-    2: Group("web", matches=[Match(wm_class=["firefox"])]),
-    3: Group("code"),
-    4: Group("docs", matches=[Match(wm_class=["okular"])]),
-    5: Group("mails", matches=[Match(wm_class=["mailspring"])]),
-    6: Group("file", matches=[Match(wm_class=["nemo"])]),
-    7: Group("game"),
-    8: Group("vlc"),
-    9: Group("off"),
-    0: Group("music")
+    1: Group("  "),
+    2: Group(" 爵 ", matches=[Match(wm_class=["firefox", "brave-browser"])]),
+    3: Group("  ", matches=[Match(wm_class=["code", "rstudio"])]),
+    4: Group("  ", matches=[Match(wm_class=["foxitreader"])]),
+    5: Group("  ", matches=[Match(wm_class=["mailspring"])]),
+    6: Group("  ", matches=[Match(wm_class=["nemo"])]),
+    7: Group("  "),
+    8: Group("  ", matches=[Match(wm_class=["vlc"])]),
+    9: Group("  "),
+    0: Group("  ")
 }
 groups = [__groups[i] for i in __groups]
 
@@ -156,7 +140,7 @@ layouts = [
         border_focus="#ebcb8b",
         border_width=3,
     ),
-    # layout.Max(),
+    layout.Max(),
     layout.Floating(
         border_normal="#2b303b",
         border_focus="#ebcb8b",
@@ -194,7 +178,7 @@ screens = [
 
                 widget.GroupBox(
                 font = 'JetBrainsMono Nerd Font',
-                fontsize = 12, 
+                fontsize = 15, 
                 padding=2,
                 block_highlight_text_color=colors[9],
                 rounded=True,
@@ -292,7 +276,7 @@ screens = [
                     foreground = colors[0],
                     play_color=colors[0],
                     no_play_color=colors[0],
-                ),
+                    ),
                 
                 # Separador power line
                 
@@ -351,16 +335,18 @@ screens = [
                 widget.QuickExit(
                     background=colors[8], 
                     foreground = colors[0],
-                    default_text='[cerrar]',
-                    countdown_format='[  {}  ]'),
+                    default_text='',
+                    countdown_format='{}',
+                    padding=12,
+                    ),
             ], # Fin de los widgets
             28, # Ancho
-            margin=[8, 8, 2, 8], # Margen NESW
-            opacity=0.9 # Opacidad
-            
+            # margin=[8, 8, 2, 8], # Margen NESW
+            opacity=0.95 # Opacidad            
             ) # Fin de la configuración de la barra
         
-        ) # Fin de esta pantalla
+        ), # Fin de esta pantalla
+    # Screen (), 
     
 ] # Screens
 
