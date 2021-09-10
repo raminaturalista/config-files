@@ -88,6 +88,8 @@ keys = [
     Key([mod], "r", lazy.spawn("/usr/bin/rstudio-bin")),
     Key([mod], "g", lazy.spawn("/usr/bin/steam-runtime")),
     Key([mod], "w", lazy.spawn("rofi -show window")),
+    Key([mod], "l", lazy.spawn("lowriter")),
+    Key([mod], "o", lazy.spawn("obs")),
         
     ]
 
@@ -95,13 +97,13 @@ keys = [
 
 __groups = {
     1: Group("  "),
-    2: Group(" 爵 ", matches=[Match(wm_class=["firefox", "brave-browser"])]),
+    2: Group(" 爵 ", matches=[Match(wm_class=["firefox", "brave","brave-browser"])]),
     3: Group("  ", matches=[Match(wm_class=["code", "rstudio"])]),
-    4: Group("  ", matches=[Match(wm_class=["foxitreader"])]),
+    4: Group("  ", matches=[Match(wm_class=["foxitreader", "libreoffice-writer", "libreoffice-calc"])]),
     5: Group("  ", matches=[Match(wm_class=["mailspring"])]),
     6: Group("  ", matches=[Match(wm_class=["nemo"])]),
     7: Group("  "),
-    8: Group("  ", matches=[Match(wm_class=["vlc"])]),
+    8: Group("  ", matches=[Match(wm_class=["vlc", "obs"])]),
     9: Group("  "),
     0: Group("  ")
 }
