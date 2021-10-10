@@ -1,0 +1,73 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+#import:
+#  - ~/.config/alacritty/alacritty.yml
+
+env:
+  TERM: xterm-256color
+
+# Ventana
+
+window:
+
+  dimensions:
+    columns: 100
+    lines: 30
+
+# Padding (en píxeles)
+  padding:
+    x: 8
+    y: 8
+
+# Decoración (full o none. Oculta bordes y barra de título)
+  decorations: none
+
+# Fuente
+font:
+  normal:
+    family: JetBrainsMono Nerd Font
+    style: Regular
+
+  bold:
+    family: JetBrainsMono Nerd Font
+    style: Bold
+
+  size: 11
+  offset:
+    x: 0
+    y: 2
+
+# Colores
+  primary:
+    background: '#2b303b'
+    foreground: '#65737e'
+
+  # Normal colors
+  normal:
+    black:   '#2b303b'
+    red:     '#bf616a'
+    green:   '#a3be8c'
+    yellow:  '#ebcb8b'
+    blue:    '#8fa1b3'
+    magenta: '#b48ead'
+    cyan:    '#96b5b4'
+    white:   '#65737e'
+
+  bright:
+    black:   '#2b303b'
+    red:     '#bf616a'
+    green:   '#a3be8c'
+    yellow:  '#ebcb8b'
+    blue:    '#8fa1b3'
+    magenta: '#b48ead'
+    cyan:    '#96b5b4'
+    white:   '#ffffff'
+  
+# Transparencia
+background_opacity: 0.85
+
+cursor:
+  style: Underline
+  thickness: 0.20
+
+  # EOF

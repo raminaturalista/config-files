@@ -164,7 +164,7 @@ layouts = [
 
 widget_defaults = dict(
     font='JetBrainsMono Nerd Font Semibold',
-    fontsize=12,
+    fontsize=11,
     padding=6,
     background=colors[0],
 )
@@ -196,29 +196,58 @@ screens = [
 
                 widget.Systray(),
 
-                widget.Net (),
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[0],
+                       foreground = colors[0],
+                       padding = -5,
+                       fontsize = 44
+                       ),
+                              
+                # Separador power line
+
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[0],
+                       foreground = colors[4],
+                       padding = -5,
+                       fontsize = 44
+                       ),
 
                 # Volumen
 
                 widget.TextBox(
                     text='',
                     fontsize=18,
-                    background = colors[0],
-                    foreground = colors[4],
+                    background = colors[4],
+                    foreground = colors[0],
 
                 ),
 
                 widget.Volume(
-                    background = colors[0],
-                    foreground = colors[4],
+                    background = colors[4],
+                    foreground = colors[0],
                     padding=10,
                 ),
-              
+
+                # Separador power line
+                
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[4],
+                       foreground = colors[5],
+                       padding = -5,
+                       fontsize = 42
+                       ),
+
                 # Ícono del reloj
 
                 widget.TextBox(
-                    background=colors[0],
-                    foreground=colors[5],
+                    background=colors[5],
+                    foreground=colors[0],
                     text="",
                     fontsize=18,
                 ),
@@ -226,49 +255,96 @@ screens = [
                 # Reloj
                 
                 widget.Clock(
-                    background=colors[0],
-                    foreground = colors[5],
+                    background=colors[5],
+                    foreground = colors[0],
                     format='%a %d-%m %H:%M'),
-                                       
+                
+                # Separador power line
+
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[5],
+                       foreground = colors[6],
+                       padding = -5,
+                       fontsize = 42
+                       ),
+
+                       
                 # MOC
 
                 widget.Moc(
-                    background=colors[0],
-                    foreground = colors[6],
-                    play_color=colors[6],
-                    no_play_color=colors[6],
+                    background=colors[6],
+                    foreground = colors[0],
+                    play_color=colors[0],
+                    no_play_color=colors[0],
                     ),
                 
+                # Separador power line
+                
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[6],
+                       foreground = colors[7],
+                       padding = -5,
+                       fontsize = 42
+                       ),
+
                 # Batería
 
                 widget.Battery (
                     charge_char="+",
                     discharge_char="-",
                     format='{char} {percent:2.0%} ',
-                    background=colors[0],
-                    foreground = colors[7],
+                    background=colors[7],
+                    foreground = colors[0],
                     show_short_text=False,
                     low_foreground = colors [9],
                     ),
                 
-                widget.CurrentLayout(
-                       background = colors[0],
+                # Separador power line
+                                
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[7],
                        foreground = colors[3],
+                       padding = -5,
+                       fontsize = 42
+                       ),
+
+
+
+                widget.CurrentLayout(
+                       background = colors[3],
+                       foreground = colors[0],
+                       ),
+
+                # Separador power line
+                
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[3],
+                       foreground = colors[8],
+                       padding = -5,
+                       fontsize = 42
                        ),
 
                 # Salir
 
                 widget.QuickExit(
-                    background=colors[0], 
-                    foreground = colors[8],
+                    background=colors[8], 
+                    foreground = colors[0],
                     default_text='',
                     countdown_format='{}',
                     padding=12,
                     ),
             ], # Fin de los widgets
             28, # Ancho
-            margin=[8, 8, 2, 8], # Margen NESW
-            opacity=0.90 # Opacidad            
+            # margin=[8, 8, 2, 8], # Margen NESW
+            opacity=0.95 # Opacidad            
             ) # Fin de la configuración de la barra
         
         ), # Fin de esta pantalla
