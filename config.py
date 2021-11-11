@@ -90,6 +90,7 @@ keys = [
     Key([mod], "w", lazy.spawn("rofi -show window")),
     Key([mod], "l", lazy.spawn("lowriter")),
     Key([mod], "o", lazy.spawn("obs")),
+    Key([mod], "n", lazy.spawn("nitrogen --random /home/ramiro/Imágenes/wallpapers --set-scaled")),
         
     ]
 
@@ -143,12 +144,7 @@ layouts = [
         border_width=3,
     ),
     layout.Max(),
-    layout.Floating(
-        border_normal="#2b303b",
-        border_focus="#ebcb8b",
-        border_width=3,
-
-    ),
+    # layout.Floating(border_normal="#2b303b", border_focus="#ebcb8b", border_width=3,),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
@@ -164,7 +160,7 @@ layouts = [
 
 widget_defaults = dict(
     font='JetBrainsMono Nerd Font Semibold',
-    fontsize=12,
+    fontsize=11,
     padding=6,
     background=colors[0],
 )
@@ -196,29 +192,82 @@ screens = [
 
                 widget.Systray(),
 
-                widget.Net (),
+                widget.Spacer (length = 10),
+              
+                # Separador power line
+
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[0],
+                       foreground = colors[4],
+                       padding = -5,
+                       fontsize = 44
+                       ),
 
                 # Volumen
 
                 widget.TextBox(
                     text='',
                     fontsize=18,
-                    background = colors[0],
-                    foreground = colors[4],
+                    background = colors[4],
+                    foreground = colors[0],
 
                 ),
 
                 widget.Volume(
-                    background = colors[0],
-                    foreground = colors[4],
+                    background = colors[4],
+                    foreground = colors[0],
                     padding=10,
                 ),
-              
+
+                # Separador power line
+
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[4],
+                       foreground = colors[1],
+                       padding = -5,
+                       fontsize = 42
+                       ),
+                # Ícono de batería
+
+                widget.TextBox (
+                    text = '',
+                    background=colors[1],
+                    foreground = colors[9],
+                    fontsize = 16,    
+                ),
+                # Batería
+
+                widget.Battery (
+                    charge_char="+",
+                    discharge_char="-",
+                    full_char = "=",
+                    format='{char} {percent:2.0%} ',
+                    background=colors[1],
+                    foreground = colors[9],
+                    show_short_text=False,
+                    low_foreground = colors [9],
+                    ),
+                
+                # Separador power line
+                                
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[1],
+                       foreground = colors[5],
+                       padding = -5,
+                       fontsize = 42
+                       ),
+
                 # Ícono del reloj
 
                 widget.TextBox(
-                    background=colors[0],
-                    foreground=colors[5],
+                    background=colors[5],
+                    foreground=colors[0],
                     text="",
                     fontsize=18,
                 ),
@@ -226,42 +275,28 @@ screens = [
                 # Reloj
                 
                 widget.Clock(
-                    background=colors[0],
-                    foreground = colors[5],
-                    format='%a %d-%m %H:%M'),
-                                       
-                # MOC
-
-                widget.Moc(
-                    background=colors[0],
-                    foreground = colors[6],
-                    play_color=colors[6],
-                    no_play_color=colors[6],
-                    ),
+                    background=colors[5],
+                    foreground = colors[0],
+                    format='%a %d.%m %H:%M'),
                 
-                # Batería
-
-                widget.Battery (
-                    charge_char="+",
-                    discharge_char="-",
-                    format='{char} {percent:2.0%} ',
-                    background=colors[0],
-                    foreground = colors[7],
-                    show_short_text=False,
-                    low_foreground = colors [9],
-                    ),
                 
-                widget.CurrentLayout(
-                       background = colors[0],
-                       foreground = colors[3],
+                # Separador power line
+                
+                widget.TextBox(
+                       text = '',
+                       # font = 'JetBrainsMono Nerd Font Regular',
+                       background = colors[5],
+                       foreground = colors[8],
+                       padding = -5,
+                       fontsize = 42
                        ),
-
+                       
                 # Salir
 
                 widget.QuickExit(
-                    background=colors[0], 
-                    foreground = colors[8],
-                    default_text='',
+                    background=colors[8], 
+                    foreground = colors[0],
+                    default_text='  ',
                     countdown_format='{}',
                     padding=12,
                     ),
@@ -319,10 +354,10 @@ def start_once():
 wmname = "Qtile"
 
 autostart = [
-        "nitrogen --restore",
+        "nitrogen --random /home/ramiro/Imágenes/wallpapers --set-scaled",
         "picom --no-vsync &",
         "nm-applet &",
-        "blueberry-tray",
+        # "blueberry-tray",
         "numlockx",
         # "systemctl enable bluetooth",
         # "volumeicon &",
